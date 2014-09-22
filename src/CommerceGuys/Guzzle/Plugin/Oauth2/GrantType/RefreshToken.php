@@ -44,8 +44,13 @@ class RefreshToken implements GrantTypeInterface
         if ($this->config['scope']) {
             $postBody['scope'] = $this->config['scope'];
         }
+        if ($this->config['client_id']) {
+            $postBody['client_id'] = $this->config['client_id'];
+        }
+        if ($this->config['client_secret']) {
+            $postBody['client_secret'] = $this->config['client_secret'];
+        }
         $request = $this->client->post(null, array(), $postBody);
-        $request->setAuth($this->config['client_id'], $this->config['client_secret']);
         $response = $request->send();
         $data = $response->json();
 
